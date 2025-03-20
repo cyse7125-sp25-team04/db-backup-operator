@@ -14,6 +14,7 @@
 
 ### Building docker image for operator : 
 
+#### Note:  RUN apk add --no-cache mysql-client docker command fails when building on linux machine. So removed the linux/arm64 platform build in Jenkinsfile. When building locally you can use below docker buildx command. 
 
 ```sh
 docker buildx create --use
