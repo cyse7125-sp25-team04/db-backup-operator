@@ -125,13 +125,13 @@ pipeline{
                     // Create and use a builder instance
                     sh 'docker buildx create --use --name imagebuilder'
                     
-                    // 1) Build and push the API image from the api folder, then cd back out
+                    // 1) Build and push the image
                     sh """
                         go mod tidy
                         make generate
-                        docker buildx build --platform linux/amd64,linux/arm64 \\
+                        docker buildx build --platform linux/amd64 \\
                             -t ${registry}:latest \\
-                            -t ${api_registry}:${NEW_VERSION} \\
+                            -t ${registry}:${NEW_VERSION} \\
                             --push .
                     """
 
