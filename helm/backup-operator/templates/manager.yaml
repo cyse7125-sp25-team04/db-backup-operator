@@ -76,7 +76,7 @@ spec:
         args:
           - --leader-elect
           - --health-probe-bind-address=:8081
-        image: csye712504/your-backup-image:latest
+        image: csye712504/db-backup-operator:latest
         name: manager
         ports: []
         securityContext:

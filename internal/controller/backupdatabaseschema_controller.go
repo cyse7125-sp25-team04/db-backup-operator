@@ -93,7 +93,7 @@ func (r *BackupDatabaseSchemaReconciler) Reconcile(ctx context.Context, req ctrl
 							Containers: []corev1.Container{
 								{
 									Name:            "backup",
-									Image:           "csye712504/your-backup-image:latest",
+									Image:           "csye712504/db-backup-operator:latest",
 									ImagePullPolicy: corev1.PullNever,
 									Command:         []string{"/bin/sh", "-c"},
 									Args:            []string{cmd},
