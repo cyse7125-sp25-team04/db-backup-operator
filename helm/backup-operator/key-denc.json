@@ -1,0 +1,32 @@
+{
+	"type": "service_account",
+	"project_id": "gcp-dev-7125",
+	"private_key_id": "a2bb46c350bdd34b553099bae9089734fd0fb734",
+	"private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDw9xUYtNteBlZs\nbVsYl1EAHMCcK5uhXOD2GlCBO/XE8MmEzRp533dYT0mmNWtET8qhUQIkiAKvp3b4\nW2eRQ1v3qQgD8GpPwSB4Sy+kONaCRo5Pp6co0v4hKie2NZP71TTQXoF2xH6EL5c3\nDk5XS0xQj8tMqnlWS0WU3z4cF/n6ej6+YPUip+XA5I/tJW9wkvpmzGpJTIiNQJE4\ng+bJwDceNlPZ7GkA1j/GuoF3KpEy/fJoWcqlbtKwTg255E/GBsGsfRRpxWrzuiWU\nLgm4FuMZeV4p9aLNePZkaQ3WPw2XT/e3fpXMoBWiR45fTNxlKleWIJgUEpUTs9rV\nlS9wlYC5AgMBAAECggEAF77diRj/ehlJSHeRT8/Ph2GN+IXSmRjwQUhQESAxxLXO\nwgO9PW/QULdFhHfEqY9sYi+7tJJjo2AvGOPXBalb5YC2fb7iFxhqxPfxyq7gMqfV\ny9MzZZI/QVDoZ2wJuHom8XayrtvHtOqErgP+o9sTeufkqpotCVwzD+vc8MNLGsvi\nrvCZ+AW9dopDzRekfqkJhOuHNZuH2GFnq+6gDbLfuWtRhDIF8cXcPI5sRY41Ojb9\nU3bk4mX0JqI3HQvhdQWqOzMpYQijZnxIWiY/L4oaPo+ypchUhLnXLu4k5OpoXhrE\nK8UHLm2uZo0l40Eb44rRa8L9okztP+PGq7Hr3ROugQKBgQD97lVcFT3QnP5bcQuw\nQziMTeS7T1ANh+MLICnLyVFshjsm1ap9Dnv9vKeXHvNLKOdDdAWmvdQtdPfSlXpF\nT5wfOkdGtMc3iaIn3oPvTP/HBJUyO1S6qJD/msFlaOhuBuSPVW4bzSaJu225BZmJ\n4JJuHDxGe3Cose+Be4i0i2zL+QKBgQDy7bQ3gVnPrmO/rHPnGgchi7VOjHkv+j8b\nyght7xVl6IlI9jQuXsscRsFVtVHAVFgWJaQbxF8JN9+rlBQA+QryAeWNAg+TSXGN\nahafQgCxP1ZYF0ycqzqswrmSZ7erMBdISy9ErM1/zXXGyW8EriqwBp1WxHsiaFOG\nBDJLJlgKwQKBgQCZc1F6GAwG6Rh8wc/CcJzXjKrQ1pkV1CxMKN+ZGsttvaA5U513\nfS1IpJzSIg38OXent5FCtixmW+z3AQWmpPk/lcRE4jIRSccIONuZ3PokloxikqAd\nPIiDLk34rnDnLJsqUwH7IvpK+UzRJqUmQOO8TqvOHAJ0rzKBGNn/4NGaYQKBgQCh\nVfb7af/Aqxv6H0k2cZXM1KFMEoUltPgWt53TjRZUARS0DTdomHIiTGd4SZyKtDlw\nM/2Cp29Kiv4UUJrcbomzYkkW1giMFBnDBnMRv97/2IW6qXarEhk8xXJDZniXy6+a\nxrwUywML3uNaa0s8+4LENxBloMX6evkFp2HTgRq1wQKBgGyLRJfg1EkZZLCyAnw/\nSyUkS69YK1ZL8dCOkISZ8C2HSPI8ETjRO4sT/hSDAl9hTXsLt7VZiR87auGj1cSW\nUKXz0YtkwZawKC4xsvjmqzoKs93vkl9SlNnGpMMPhd4nykGf/FRh4D1UXIjiuxIG\nY7tHM/MecXKHR3tN6eiAmLst\n-----END PRIVATE KEY-----\n",
+	"client_email": "my-sa-test@gcp-dev-7125.iam.gserviceaccount.com",
+	"client_id": "112033957932716457677",
+	"auth_uri": "https://accounts.google.com/o/oauth2/auth",
+	"token_uri": "https://oauth2.googleapis.com/token",
+	"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+	"client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/my-sa-test%40gcp-dev-7125.iam.gserviceaccount.com",
+	"universe_domain": "googleapis.com",
+	"sops": {
+		"kms": [
+			{
+				"arn": "arn:aws:kms:us-east-1:418295703729:key/e632f6ac-2567-4d4d-870b-ff6a140c6188",
+				"created_at": "2025-03-19T22:34:39Z",
+				"enc": "AQICAHi7oh61ZlQ7I3LrLWwkvps7Q9v67DixnZ8669gi5wSszgHT7/OAD3Hxey0Ed+pqT8ebAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMMntOn4EvtN+22b4+AgEQgDspshjvC9dvvtAFZgolMs6GrBp3dv14TtLk90wfWF6BGSys0ToGSKzQL6ytd2fpINyGT1X1oD8v2Jrglg==",
+				"aws_profile": "csye7125-root"
+			}
+		],
+		"gcp_kms": null,
+		"azure_kv": null,
+		"hc_vault": null,
+		"age": null,
+		"lastmodified": "2025-03-19T22:34:39Z",
+		"mac": "ENC[AES256_GCM,data:WFx14PLGs6h/f1BG06xtIohJQufoZuJP8+aII8E4XZVFPLgkg1AuoCFkfSj2cSGKO4MzfMP0B35dXoOiu8q1OUn9fFGWuBd07JswUd45K53aav7Y/9BFCT7khnJoaxEJHy0Uf2bkwq2p5QrjBGbrJWl1js836650fI+9OHtpzxM=,iv:Zxc8bX41lmBQDNEJJUht7zvAgO41OWdmz7Epuwlc4SE=,tag:cR+3N04vLw9kxcE2d0yj7w==,type:str]",
+		"pgp": null,
+		"encrypted_regex": "^(data|stringData)$",
+		"version": "3.9.4"
+	}
+}
