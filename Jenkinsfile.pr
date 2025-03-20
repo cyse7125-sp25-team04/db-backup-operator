@@ -1,0 +1,82 @@
+pipeline {
+    agent any
+
+    environment {
+        GITHUB_PAT = credentials('shalom-PAT') // GitHub Personal Access Token
+        
+        // Extract repository owner/name dynamically
+        REPO = sh(
+            script: "git config --get remote.origin.url | sed -E 's#.*/([^/]+/[^.]+)(\\.git)?\$#\\1#'",
+            returnStdout: true
+        ).trim()
+
+        // Extract the latest commit SHA
+        SHA = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+    }
+
+    stages {
+        stage('Validate Commit Message') {
+            steps {
+                script {
+                    // Get the commit message
+                    def commitMessage = sh(
+                        script: 'git log -1 --pretty=%B',
+                        returnStdout: true
+                    ).trim()
+                    
+                    // Echo the commit message for visibility
+                    echo "Current commit message: '${commitMessage}'"
+                    
+                    // Simple regex for conventional commits
+                    def pattern = '(?i)^(feat|fix|docs|chore|style|refactor|test|perf|build|ci|revert)(!|: breaking change|: BREAKING CHANGE|: BREAKING CHANGE:)?(.+)|^BREAKING CHANGE: .+'
+                    
+                    if (!(commitMessage =~ pattern)) {
+                        error """
+                            Invalid commit message format!
+                            Expected format: type: description
+                            Valid types (case insensitive): FEAT, FIX, DOCS, CHORE, STYLE, REFACTOR, TEST, PERF, BUILD, CI, REVERT
+                            Breaking changes can be indicated with: 
+                            - An exclamation mark: feat!: description
+                            - In the description: feat: BREAKING CHANGE: description
+                            Examples: 
+                            - feat: add login feature
+                            - FIX: resolve bug
+                            - FEAT!: redesign API
+                            - chore: BREAKING CHANGE: update dependencies
+                        """
+                    }
+                    
+                    echo "Commit message validation passed!"
+                }
+            }
+        }
+    }
+    
+    post {
+        success {
+            script {
+                sendGitHubStatus('success', 'PR commit validation passed', 'jenkins/pr-commit-validation-check', env.BUILD_URL)
+            }
+        }
+        failure {
+            script {
+                sendGitHubStatus('failure', 'PR commit validation failed', 'jenkins/pr-commit-validation-check', env.BUILD_URL)
+            }
+        }
+    }
+}
+
+// Function to send status to GitHub with Jenkins job URL
+def sendGitHubStatus(String state, String description, String context, String targetUrl) {
+    sh """
+        curl -X POST -H "Authorization: token ${env.GITHUB_PAT}" \
+        -H "Accept: application/vnd.github.v3+json" \
+        https://api.github.com/repos/${env.REPO}/statuses/${env.SHA} \
+        -d '{
+            "state": "$state",
+            "description": "$description",
+            "context": "$context",
+            "target_url": "$targetUrl"
+        }'
+    """
+}

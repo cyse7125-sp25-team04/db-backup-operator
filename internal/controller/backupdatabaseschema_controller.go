@@ -66,12 +66,12 @@ func (r *BackupDatabaseSchemaReconciler) Reconcile(ctx context.Context, req ctrl
 
 	// 4. Build the CronJob object with schedule "*/5 * * * *" (every 5 minutes)
 	cmd := `backupFile=/backup/${DB_SCHEMA}_$(date +\%s%N).sql && ` +
-		`echo "Dumping schema from ${DB_HOST}:${DB_PORT}" && `+
-		`mysqldump --host=${DB_HOST} --port=${DB_PORT} --user=${DB_USER} --password=${DB_PASSWORD} --no-data ${dbName} > $backupFile && `+
-		`echo "Backup created at $backupFile" && `+
-		`gcloud config set project gcp-dev-7125 && `+
-		`gcloud auth activate-service-account --key-file=/var/secrets/gcp/key.json && `+
-		// `sleep 50000 &&` + 
+		`echo "Dumping schema from ${DB_HOST}:${DB_PORT}" && ` +
+		`mysqldump --host=${DB_HOST} --port=${DB_PORT} --user=${DB_USER} --password=${DB_PASSWORD} --no-data ${dbName} > $backupFile && ` +
+		`echo "Backup created at $backupFile" && ` +
+		`gcloud config set project gcp-dev-7125 && ` +
+		`gcloud auth activate-service-account --key-file=/var/secrets/gcp/key.json && ` +
+		// `sleep 50000 &&` +
 		`gsutil cp $backupFile gs://${GCS_BUCKET}/$backupFile`
 
 	cronJob := &batchv1.CronJob{

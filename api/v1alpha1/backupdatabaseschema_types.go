@@ -25,28 +25,27 @@ import (
 
 // BackupDatabaseSchemaSpec defines the desired state of BackupDatabaseSchema
 type BackupDatabaseSchemaSpec struct {
-    DBHost                     string `json:"dbHost"`
-    DBUser                     string `json:"dbUser"`
-    DBPasswordSecretName       string `json:"dbPasswordSecretName"`
-    DBPasswordSecretNamespace  string `json:"dbPasswordSecretNamespace"`
-    DBPasswordSecretKey        string `json:"dbPasswordSecretKey"`
-    DBName                     string `json:"dbName"`
-    DBSchema                   string `json:"dbSchema"`
-    DBPort                     int32  `json:"dbPort"`
-    GCSBucket                  string `json:"gcsBucket"`
-    KubeServiceAccount         string `json:"kubeServiceAccount"`
-    GCPServiceAccount          string `json:"gcpServiceAccount"`
-    BackupJobNamespace         string `json:"backupJobNamespace"`
+	DBHost                    string `json:"dbHost"`
+	DBUser                    string `json:"dbUser"`
+	DBPasswordSecretName      string `json:"dbPasswordSecretName"`
+	DBPasswordSecretNamespace string `json:"dbPasswordSecretNamespace"`
+	DBPasswordSecretKey       string `json:"dbPasswordSecretKey"`
+	DBName                    string `json:"dbName"`
+	DBSchema                  string `json:"dbSchema"`
+	DBPort                    int32  `json:"dbPort"`
+	GCSBucket                 string `json:"gcsBucket"`
+	KubeServiceAccount        string `json:"kubeServiceAccount"`
+	GCPServiceAccount         string `json:"gcpServiceAccount"`
+	BackupJobNamespace        string `json:"backupJobNamespace"`
 }
 
 // BackupDatabaseSchemaStatus defines the observed state of BackupDatabaseSchema
 type BackupDatabaseSchemaStatus struct {
-    LastBackupTime string `json:"lastBackupTime,omitempty"`  // UTC time stamp of the last backup run
-    BackupLocation string `json:"backupLocation,omitempty"`  // Full path in the GCS bucket
-    JobStatus      string `json:"jobStatus,omitempty"`       // e.g., success, failed, running
-    RecentJobName  string `json:"recentJobName,omitempty"`
+	LastBackupTime string `json:"lastBackupTime,omitempty"` // UTC time stamp of the last backup run
+	BackupLocation string `json:"backupLocation,omitempty"` // Full path in the GCS bucket
+	JobStatus      string `json:"jobStatus,omitempty"`      // e.g., success, failed, running
+	RecentJobName  string `json:"recentJobName,omitempty"`
 }
-
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
