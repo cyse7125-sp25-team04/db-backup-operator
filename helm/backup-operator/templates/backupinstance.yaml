@@ -1,0 +1,17 @@
+apiVersion: backup.test.io/v1alpha1
+kind: BackupDatabaseSchema
+metadata:
+  name: sample-backup
+spec:
+  dbHost: "database-service.webapp.svc.cluster.local"
+  dbUser: "root"
+  dbPasswordSecretName: "database-secrets"
+  dbPasswordSecretNamespace: "webapp"
+  dbPasswordSecretKey: "DB_PASSWORD"
+  dbName: "api"
+  dbSchema: "appi"
+  dbPort: 3306
+  gcsBucket: "gcs-testt"
+  kubeServiceAccount: "backup-sa"
+  gcpServiceAccount: "gcp-key"
+  backupJobNamespace: "backup"
