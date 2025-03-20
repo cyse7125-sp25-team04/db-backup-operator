@@ -17,7 +17,7 @@
 
 ```sh
 docker buildx create --use
-docker buildx build --platform linux/amd64,linux/arm64 -t csye712504/your-backup-image:latest --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t csye712504/db-backup-operator:latest --push .
 ```
 
 ### Decrypt: 
