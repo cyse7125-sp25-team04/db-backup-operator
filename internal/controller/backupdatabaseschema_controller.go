@@ -67,11 +67,11 @@ func (r *BackupDatabaseSchemaReconciler) Reconcile(ctx context.Context, req ctrl
 	// 4. Build the CronJob object with schedule "*/5 * * * *" (every 5 minutes)
 	cmd := `backupFile=/backup/${DB_SCHEMA}_$(date +\%s%N).sql && ` +
 		`echo "Dumping schema from ${DB_HOST}:${DB_PORT}" && ` +
-		`mysqldump --host=${DB_HOST} --port=${DB_PORT} --user=${DB_USER} --password=${DB_PASSWORD} --no-data ${dbName} > $backupFile && ` +
+		`mysqldump --host=${DB_HOST} --port=${DB_PORT} --user=${DB_USER} --password=${DB_PASSWORD} --no-data ${DB_NAME} > $backupFile && ` +
 		`echo "Backup created at $backupFile" && ` +
 		`gcloud config set project gcp-dev-7125 && ` +
 		`gcloud auth activate-service-account --key-file=/var/secrets/gcp/key.json && ` +
-		// `sleep 50000 &&` +
+		`sleep 50000 &&` +
 		`gsutil cp $backupFile gs://${GCS_BUCKET}/$backupFile`
 
 	cronJob := &batchv1.CronJob{
@@ -90,14 +90,15 @@ func (r *BackupDatabaseSchemaReconciler) Reconcile(ctx context.Context, req ctrl
 					Template: corev1.PodTemplateSpec{
 						Spec: corev1.PodSpec{
 							RestartPolicy: corev1.RestartPolicyNever,
-							ImagePullSecrets: []corev1.LocalObjectReference{
-								{
-									Name: "myapp-secret-docker",
-								},
-							},
+							// ImagePullSecrets: []corev1.LocalObjectReference{
+							// 	{
+							// 		Name: "myapp-secret-docker",
+							// 	},
+							// },
 							Containers: []corev1.Container{
 								{
 									Name:            "backup",
+									ImagePullPolicy: corev1.PullNever,
 									Image:           "csye712504/db-backup-operator:latest",
 									Command:         []string{"/bin/sh", "-c"},
 									Args:            []string{cmd},
