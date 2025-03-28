@@ -90,6 +90,11 @@ func (r *BackupDatabaseSchemaReconciler) Reconcile(ctx context.Context, req ctrl
 					Template: corev1.PodTemplateSpec{
 						Spec: corev1.PodSpec{
 							RestartPolicy: corev1.RestartPolicyNever,
+							ImagePullSecrets: []corev1.LocalObjectReference{
+								{
+									Name: "myapp-secret-docker",
+								},
+							},
 							Containers: []corev1.Container{
 								{
 									Name:            "backup",
